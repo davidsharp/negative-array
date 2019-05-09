@@ -17,7 +17,7 @@ module.exports = array => {
 				return Reflect.get(target, name, receiver);
 			}
 
-			return target[index < 0 ? target.length + index : index];
+			return target[(target.length + index) % target.length];
 		},
 		set(target, name, value, receiver) {
 			if (typeof name !== 'string') {
@@ -30,7 +30,7 @@ module.exports = array => {
 				return Reflect.set(target, name, value, receiver);
 			}
 
-			target[index < 0 ? target.length + index : index] = value;
+			target[(target.length + index) % target.length] = value;
 
 			return true;
 		}
